@@ -1,6 +1,6 @@
 {
   "name": "sbsmljs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "JS Parser and linter for SBSML spec documents",
   "main": "./bin/index.js",
   "scripts": {
