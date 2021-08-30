@@ -11,7 +11,8 @@ function main() {
         } else {
             parser = SBSMLParser.parse(data);
             //parser.asJSON();
-
+            nodeList = parser.getProcessTree("Bake a cake");
+            console.log(nodeList);
         }
     })
 }
