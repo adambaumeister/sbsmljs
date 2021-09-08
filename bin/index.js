@@ -13,7 +13,7 @@ function main() {
             //parser.asJSON();
             nodeList = parser.getProcessTree("Bake a cake");
             nodeList.forEach(node => {
-                console.log(node.nodeName);
+                console.log(node.line);
             })
         }
     })
