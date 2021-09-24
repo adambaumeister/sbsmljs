@@ -1,4 +1,4 @@
-const { SubStepNode, SBSMLParser, ProcessNode, StepNode, DescriptionNode } = require('../lib/parser');
+const {SubStepNode, SBSMLParser, ProcessNode, StepNode, DescriptionNode} = require('../lib/parser');
 const assert = require('assert/strict');
 const {ParserError} = require('../lib/errors')
 
@@ -22,9 +22,19 @@ function testParseLine() {
 
 }
 
-function testErrors() {
-    throw new ParserError(`ProcessNode awdwnot found.`);
+function testParseInput() {
+    let testLineWithInput = "input1";
+    let p = new SBSMLParser(testLineWithInput);
+    let inputNode = p.parseInput(testLineWithInput);
+    assert.equal(inputNode.text, "input1");
+
+    let testLineWithInputName = "input1:value1";
+    inputNode = p.parseInput(testLineWithInputName);
+    assert.equal(inputNode.text, "value1");
+    assert.equal(inputNode.name, "input1");
+
+
 }
 
-testErrors();
 testParseLine();
+testParseInput();

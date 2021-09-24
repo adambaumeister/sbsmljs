@@ -7,14 +7,10 @@ function main() {
     fs.readFile(TEST_DOC_PATH, "utf-8", (err, data) => {
         if (err) {
             console.error(err);
-            return;
         } else {
             parser = SBSMLParser.parse(data);
-            //parser.asJSON();
+            parser.asJSON();
             nodeList = parser.getProcessTree("Bake a cake");
-            nodeList.forEach(node => {
-                console.log(node.line);
-            })
         }
     })
 }
