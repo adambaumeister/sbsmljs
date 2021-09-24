@@ -1,6 +1,6 @@
-const {SubStepNode, SBSMLParser, ProcessNode, StepNode, DescriptionNode} = require('../lib/parser');
+const {SubStepNode, SBSMLParser, ProcessNode, StepNode, DescriptionNode, Input, Output} = require('../lib/parser');
 const assert = require('assert/strict');
-const {ParserError} = require('../lib/errors')
+const {Playbook} = require('../lib/playbook')
 
 function testParseLine() {
     // Test Process Line
@@ -25,16 +25,23 @@ function testParseLine() {
 function testParseInput() {
     let testLineWithInput = "input1";
     let p = new SBSMLParser(testLineWithInput);
-    let inputNode = p.parseInput(testLineWithInput);
+    let inputNode = p.parseArgumentText(testLineWithInput, Input);
     assert.equal(inputNode.text, "input1");
 
     let testLineWithInputName = "input1:value1";
-    inputNode = p.parseInput(testLineWithInputName);
+    inputNode = p.parseArgumentText(testLineWithInputName, Output);
     assert.equal(inputNode.text, "value1");
     assert.equal(inputNode.name, "input1");
+}
 
-
+function testPlaybook() {
+    let testString = `--- Test Process ---
+    1. Test step`
+    let parser = SBSMLParser.parse(testString);
+    let p = new Playbook(parser);
+    p.render();
 }
 
 testParseLine();
 testParseInput();
+testPlaybook();
