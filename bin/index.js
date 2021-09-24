@@ -9,7 +9,7 @@ function main() {
             console.error(err);
         } else {
             parser = SBSMLParser.parse(data);
-            parser.asJSON();
+            console.log(parser.asJSON());
             nodeList = parser.getProcessTree("Bake a cake");
         }
     })
