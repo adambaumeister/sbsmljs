@@ -38,9 +38,9 @@ function testPlaybook() {
     let testString = `--- Test Process ---
     1. Test step`
     let parser = SBSMLParser.parse(testString);
-    let p = new Playbook(parser);
-    let tasks = p.render();
-    console.log(JSON.stringify(tasks, null, 4));
+    let playbook = Playbook.render(parser);
+    //console.log(JSON.stringify(tasks, null, 4));
+    playbook.toYaml();
 }
 
 testParseLine();
