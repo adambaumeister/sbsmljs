@@ -39,7 +39,8 @@ function testPlaybook() {
     1. Test step`
     let parser = SBSMLParser.parse(testString);
     let p = new Playbook(parser);
-    p.render();
+    let tasks = p.render();
+    console.log(JSON.stringify(tasks, null, 4));
 }
 
 testParseLine();
