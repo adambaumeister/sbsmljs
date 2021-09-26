@@ -43,6 +43,21 @@ function testPlaybook() {
     playbook.toYaml();
 }
 
+function testConditional() {
+    let testString = `--- Test Process ---
+    1. Test step
+    IF: something THEN: something else
+    
+    --- something else ---
+    1. Some other step
+    `
+    let parser = SBSMLParser.parse(testString);
+    //console.log(parser.asJSON());
+    console.log(parser.currentConditional);
+
+}
+
 testParseLine();
 testParseInput();
 testPlaybook();
+testConditional();
