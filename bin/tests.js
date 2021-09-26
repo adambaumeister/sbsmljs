@@ -47,14 +47,20 @@ function testConditional() {
     let testString = `--- Test Process ---
     1. Test step
     IF: something THEN: something else
+    then: default process
     
     --- something else ---
     1. Some other step
+    
+    --- default process ---
+    1. Default step
     `
     let parser = SBSMLParser.parse(testString);
-    //console.log(parser.asJSON());
-    console.log(parser.currentConditional);
+    let list = parser.getProcessTree("Test Process")
 
+    list.forEach(node => {
+        console.log(node.nodeName);
+    })
 }
 
 testParseLine();
