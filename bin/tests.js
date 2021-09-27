@@ -36,11 +36,19 @@ function testParseInput() {
 
 function testPlaybook() {
     let testString = `--- Test Process ---
-    1. Test step`
+    1. Test step
+    IF: something THEN: something else
+    then: default process
+    
+    --- default process ---
+    1. default step
+    
+    --- something else ---
+    1. some step
+    `
     let parser = SBSMLParser.parse(testString);
     let playbook = Playbook.render(parser);
-    //console.log(JSON.stringify(tasks, null, 4));
-    playbook.toYaml();
+    console.log(playbook.toYaml());
 }
 
 function testConditional() {
@@ -57,13 +65,8 @@ function testConditional() {
     `
     let parser = SBSMLParser.parse(testString);
     let list = parser.getProcessTree("Test Process")
-
-    list.forEach(node => {
-        console.log(node.nodeName);
-    })
 }
-
+testConditional();
 testParseLine();
 testParseInput();
 testPlaybook();
-testConditional();
