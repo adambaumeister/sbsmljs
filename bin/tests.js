@@ -48,7 +48,8 @@ function testPlaybook() {
     `
     let parser = SBSMLParser.parse(testString);
     let playbook = Playbook.render(parser);
-    console.log(playbook.toYaml());
+    assert.equal(playbook.r["tasks"]["2"]["task"]["name"], "Test step" );
+    assert.equal(playbook.r["tasks"]["4"]["task"]["name"], "something else" );
 }
 
 function testConditional() {
