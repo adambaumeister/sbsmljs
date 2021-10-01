@@ -50,6 +50,7 @@ function testPlaybook() {
     let playbook = Playbook.render(parser);
     assert.equal(playbook.r["tasks"]["2"]["task"]["name"], "Test step" );
     assert.equal(playbook.r["tasks"]["4"]["task"]["name"], "something else" );
+    console.log(playbook.toYaml())
 }
 
 function testConditional() {
